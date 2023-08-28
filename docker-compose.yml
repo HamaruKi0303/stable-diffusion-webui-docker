@@ -6,6 +6,8 @@ x-base_service: &base_service
     volumes:
       - &v1 ./data:/data
       - &v2 ./output:/output
+      # - &v2 ./data/embeddings:/stable-diffusion-webui/embeddings
+
     stop_signal: SIGKILL
     tty: true
     deploy:
@@ -31,7 +33,7 @@ services:
     build: ./services/AUTOMATIC1111
     image: sd-auto:63
     environment:
-      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api --no-half-vae
 
   auto-cpu:
     <<: *automatic

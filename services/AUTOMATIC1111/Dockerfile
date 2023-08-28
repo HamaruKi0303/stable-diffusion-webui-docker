@@ -26,6 +26,7 @@ FROM python:3.10.9-slim
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN --mount=type=cache,target=/var/cache/apt \
   apt-get update && \
   # we need those
